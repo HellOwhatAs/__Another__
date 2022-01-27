@@ -1,5 +1,5 @@
-#ifndef XJQ_PRINTING
-#define XJQ_PRINTING
+#ifndef _PRINTING
+#define _PRINTING
 #include"type.h"
 #include<streambuf>
 using namespace std;
