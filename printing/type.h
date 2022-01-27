@@ -1,5 +1,5 @@
-#ifndef XJQ_TYPE
-#define XJQ_TYPE
+#ifndef _TYPE
+#define _TYPE
 #include<iostream>
 #include<vector>
 #include<algorithm>
