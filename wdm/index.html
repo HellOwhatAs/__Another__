@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="./katex.min.js"></script>
+        <link rel="stylesheet" href="./pseudocode.min.css">
+        <link rel="stylesheet" href="./katex.min.css">
+        <script src="./pseudocode.min.js"></script>
+        <style>
+            textarea{
+                height: 30vh;
+                resize: vertical;
+                background-color:lightsteelblue;
+            }
+            .block_warpper{
+                width: 90%;
+                margin-left: 5%;
+                margin-right: 5%;
+                margin-top: 2%;
+                margin-bottom: 2%;
+                padding: 5px;
+                background-color: white;
+                border: 1px solid #DCDCDC;
+                box-shadow: 0 0 5px #ccc;
+                border-radius: 5px;
+                background-color: lightslategrey;
+            }
+            .ps-root{
+                background-color: antiquewhite;
+            }
+        </style>
+        <script>
+            block_warpper_count=0;
+            function run_render(_c){
+                var tmp=document.getElementById(_c).getElementsByClassName("ps-root");
+                if(tmp.length>0){
+                    tmp[0].outerHTML='<pre id="'+_c+""+(-_c)+'" style=" width: 100%; right: 0%;"></pre>';
+                }
+                tmp=document.getElementById(_c+""+(-_c));
+                tmp.innerText=document.getElementById(-_c).value;
+                console.log(tmp);
+                pseudocode.renderElement(tmp)
+            }
+        </script>
+    </head>
+    <body style="background-color: darkslategrey;">
+        <!-- <div class="block_warpper" id="'+block_warpper_count+'">
+            <textarea id="" style=" left: 0%; width: 49%;"></textarea>
+            <pre style=" width: 49%; right: 0%;"></pre>
+            <button onclick=""> ▷</button>
+            <button onclick="document.getElementById('+block_warpper_count+').remove()">del</button>
+        </div> -->
+        <!-- <pre class="wdm">
+            % This quicksort algorithm is extracted from Chapter 7, Introduction to Algorithms (3rd edition)
+            \begin{algorithm}
+            \caption{Quicksort}
+            \begin{algorithmic}
+            \PROCEDURE{Quicksort}{$A, p, r$}
+                \IF{$p < r$} 
+                    \STATE $q = $ \CALL{Partition}{$A, p, r$}
+                    \STATE \CALL{Quicksort}{$A, p, q - 1$}
+                    \STATE \CALL{Quicksort}{$A, q + 1, r$}
+                \ENDIF
+            \ENDPROCEDURE
+            \PROCEDURE{Partition}{$A, p, r$}
+                \STATE $x = A[r]$
+                \STATE $i = p - 1$
+                \FOR{$j = p$ \TO $r - 1$}
+                    \IF{$A[j] < x$}
+                        \STATE $i = i + 1$
+                        \STATE exchange
+                        $A[i]$ with $A[j]$
+                    \ENDIF
+                    \STATE exchange $A[i]$ with $A[r]$
+                \ENDFOR
+            \ENDPROCEDURE
+            \end{algorithmic}
+            \end{algorithm}
+        </pre> -->
+        <button onclick="addpre()" style="width: 40%;left: 30%;right: 30%;position: fixed;bottom: 2%;">增加</button>
+        <script>
+            function addpre(){
+                block_warpper_count++;
+            var node=document.createElement("div");
+            document.body.appendChild(node);
+            node.outerHTML='\
+        <div class="block_warpper" id="'+block_warpper_count+'">\
+            <textarea id="'+(-block_warpper_count)+'" style=" left: 0%; width: 99%;"></textarea>\
+            <pre id="'+block_warpper_count+(-block_warpper_count)+'" style=" width: 100%; right: 0%;"></pre>\
+            <button onclick="run_render('+block_warpper_count+')"> ▷</button>\
+            <button onclick="document.getElementById('+block_warpper_count+').remove()">del</button>\
+        </div>';
+            }
+        </script>
+        <script>
+            document.querySelectorAll("pre.wdm").forEach(function(elem){pseudocode.renderElement(elem)});
+        </script>
+    </body>
+</html>
