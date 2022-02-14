@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <style>
+                img{
+                    width: 70%;
+                    display: flex;
+                }
+                button{
+                    position: fixed;
+                    width: 10%;
+                    height: 10%;
+                }
+                button.prev{
+                    left: 85%;
+                    bottom: 25%;
+                }
+                button.next{
+                    left: 85%;
+                    bottom: 10%;
+                }
+                button.quit{
+                    left: 85%;
+                    bottom: 40%;
+                }
+                .mlml{
+                    background-color: cornflowerblue;
+                    position: fixed;
+                    right: 85%;
+                    left: 0;
+                    top: 0;
+                    bottom: 0;
+                    overflow:auto;
+                    text-overflow: ellipsis;
+                }
+                .cpt{
+                    background-color:aqua;
+                    margin: 2%;
+                    border: 2px solid black;
+                    border-radius: 4%;
+                    box-shadow: 0 0 5px #888888;
+                    user-select: none;
+                }
+                .actived{
+                    background-color:lime;
+                }
+            </style>
+            <script>
+                var data=[
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113782.html",
+        "title": "第一话：看不见的人",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04e9467cba.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0469ae11bc.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/042f4ff002.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0440ca3b15.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0450c98eba.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04abc7432e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0415b1f0ec.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04863eeb58.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/042553facd.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04a6b2cbfb.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0460d74320.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0452e4760b.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0416b6af42.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04b847d26f.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04e190cfcc.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04c33e824c.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113783.html",
+        "title": "第二话：黑卡",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/040b309165.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04d171ac7a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04080e2061.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0478be76f0.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04f09fe77e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04d036179c.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/041dc25fc2.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/046513660c.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04bfbaf345.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0473084ceb.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/044a5e36bb.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/040b59a542.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04e6f919da.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/040fd58fc5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/043ba2efd7.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113784.html",
+        "title": "第三话：要帮忙吗？",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/043f77ed14.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/048629d7f2.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0477b1b6cd.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04de5cbf55.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0499b4278b.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04b62d0c85.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0426eb8e35.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0495057a14.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/041c4ae225.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/045647a0d2.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04561df993.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0442781ed2.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113785.html",
+        "title": "第四话：谈谈",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0469a2d052.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/045d7e20b8.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04a7570ea7.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04ee461ee3.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04f86a96bd.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04d4fddb08.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04e8725a13.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/043c5d9269.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04f425d0a0.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04c6dab8fb.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0419455a2b.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113786.html",
+        "title": "第五话：提议",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/045b015d56.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04d97dd043.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/046269d3b3.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04d0483552.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04baadcde0.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04c22a327e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/049e01db40.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04c8b67d9f.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04a0262d4a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04721daa43.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/047eb3a458.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04498aba42.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0406be39e5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0486811562.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04bfbf8937.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04de3e402f.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113787.html",
+        "title": "第六话：嘱托",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/043384eb4c.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/049a2cca10.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/047807258e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04a9f4e58e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04e9c7eab4.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/040b7bbda7.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04d7a181f4.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04e12a78fe.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0440baca74.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0467b7268c.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04e1e6d935.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0498b2b523.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/046f773721.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/045fd06b0b.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04a06247fd.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04bed9b632.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113788.html",
+        "title": "第七话：出发",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/043c89fc0a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04d8d916d1.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/044d0285c7.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04d0af010f.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0450a1ed22.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04e1f638b6.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0400cc3cf4.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0467297ea1.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113789.html",
+        "title": "第八话：抵达",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04decb485b.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0422f19c7d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/044e2e7be2.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/043ea8e38c.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04ff8558fa.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04d3693643.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/044038d2ed.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/047f6f79f5.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113790.html",
+        "title": "第九话：复刻",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04cc941046.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04be0be010.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04f65e638f.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04d0b44585.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04f211dde8.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/046f34bdff.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/048f6dc407.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/041195b216.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113791.html",
+        "title": "第十话：难以入眠",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04e23a4910.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04a2158017.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/049bd53013.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04e1288b03.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/047379b881.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/045c08aa9d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04271ac7ba.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04e03e65cb.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0407ea2aa7.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04c3e23c7a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04fd06bb2b.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/040a507524.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04353d4226.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113792.html",
+        "title": "第十一话：幸运数字",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0465a5d34d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04367dfc9d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04f7f2f68a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0435e52fe9.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/046593c95b.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04ca0e170f.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04789bc193.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/046be6d4f6.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/049ea4ec3c.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04a1cde50b.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04d0dfb9af.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0482c34076.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04bbe046cd.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04277a4860.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113793.html",
+        "title": "第十二话：雕像",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/042f6e3f2e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/048ffeb8f5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04992fc582.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/048dda5546.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04bff332cc.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04a4ecc44e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0421644727.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04d3bd77b6.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04f3b2a4c8.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04adbb17f0.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04bdcbd2cf.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04d60f429c.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0499853bb3.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113794.html",
+        "title": "第十三话：围追堵截",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04ebf98ba2.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04effaaa60.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04be1129d4.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04fbab0544.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0439dc9e88.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/047d4d5672.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0401fb141c.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/046913653b.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0478d3fc09.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04e3f3c092.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0481b11db1.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04568ab2eb.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0456dfccaf.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113795.html",
+        "title": "第十四话：去而复返",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/049ee0a503.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0471fee1d2.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04c626437d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04e8489abd.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04a73e65dc.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0460559090.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04e69c78aa.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04fa3a533d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/043a23dab5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/041df114c9.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04b6a72bb5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/047c8ae668.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/04d41ec530.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113796.html",
+        "title": "第十五话：变数",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0528d48ecc.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05239fd4c8.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0514e4ddb7.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/055764cbfe.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/055bcaa55d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05d38c73c7.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05ff8d2822.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/057abacb8c.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/058875ef55.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/056bfdf3ad.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0595e31657.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0567b500ba.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113797.html",
+        "title": "第十六话：叔侄",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0597fe48d5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/053d3c279e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05811f0a80.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0582839147.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05b0d935b1.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05e513760e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05380f47f3.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05c3700a0a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05536022c6.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05ef577b5d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05254e06d4.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05f61a628d.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113798.html",
+        "title": "第十七话：元素与巨人之书",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/055c29d9ee.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05289e1316.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/059116242b.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05eb3032eb.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05ca3a0004.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05b41f5d27.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0534da05c0.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/056fa5f8b0.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/051c9973cc.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113799.html",
+        "title": "第十八话：休整",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0561a4d726.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0575da2ed4.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/053666b3dc.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05991c8c03.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/058e566b17.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05efc59428.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/050776ace9.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/053d21b139.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113800.html",
+        "title": "第十九话：决断",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/054c4efe26.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05e05e683d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05b76e590e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05b67c3b32.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05bd23baea.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05ff8e66d3.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/058808c39d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05d2070afe.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113801.html",
+        "title": "第二十话：分道扬镳",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/058864181d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05578fb1e0.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05dd9c4935.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05616ec1f8.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/059824cbfe.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05e0616ffb.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/051ba3114e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05588c60cd.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0526e540b8.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/054af2d035.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0537987407.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113802.html",
+        "title": "第二十一话：本性",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0587a2f683.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/054243d9c6.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05adf3f2d6.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/056a3b51c7.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0534b3490b.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0548d969e5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/057a28318e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05dfbd1c92.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/053fdf9e31.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0506b2e720.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/059824745d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/059b304c90.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113803.html",
+        "title": "第二十二话：白卡",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0555028963.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0502007303.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/051fa4dc27.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05dbe66e31.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/054f1be756.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0563618666.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05f02c56de.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05703274a3.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113804.html",
+        "title": "第二十三话：祸鼠",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05be2d5e8a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05b460e304.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0580de2d3a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/056af806e8.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/050e7942b7.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05223a6800.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/052f6f5240.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05360ae370.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0539104345.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0563be43c5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/052bdbde24.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113805.html",
+        "title": "第二十四话：飞鸟",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0502a6587a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05d513ad05.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05301dacb5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/058fa53767.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/054b06a0e5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05b6f313d1.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/052ff48905.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0515de588b.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/052ecf13cb.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05fd3b5233.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0509f64935.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113806.html",
+        "title": "第二十五话：夜巨人",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05c9cabed1.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/050374f5db.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05376c88e0.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0599a3c2e7.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05de2899aa.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05e7faa987.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/052eda6b41.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0522aae2ef.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/059daec542.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0536716aa4.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113807.html",
+        "title": "第二十六话：寻找",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05b3b24cc1.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05c426c659.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/050dac6936.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05c6dc6202.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/058a476aae.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05cef7fcd7.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05df4c9c81.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/054f5e8877.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/057343d7cc.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05987d9ac8.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113808.html",
+        "title": "第二十七话：食灵",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05ac851bfc.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05f62af15a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05f8cbbadc.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/052226badd.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0563206c07.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0506d65b92.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/053443c051.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05de88c849.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05a507aa96.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05d10a851c.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113809.html",
+        "title": "第二十八话：试炼",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0528cc31d2.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/056db16e54.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0509576499.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05668979b8.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05478b9e7d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/05e43acaf2.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/054aa2d93f.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0567a24e52.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/055f02fd96.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06b5f98dbb.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06a832e947.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113810.html",
+        "title": "第二十九话：强大的证明",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0656127f03.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06c058369c.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0698b1d93c.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/066cf08b55.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06c4bb2b7d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0617b2b0de.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0698c36444.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06b5f45654.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0600a9edd6.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113811.html",
+        "title": "第三十话：晋国六卿",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0698459309.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06dd9a3897.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06efc9a45e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06d29ea9a6.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06ecec6c08.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0672623d2a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/065b67bd03.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06c91d7b14.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06748cd9ad.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06418cf42b.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113812.html",
+        "title": "第三十一话：不速之客",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06efc861b1.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06684dde79.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06f5dca576.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/061bccd828.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06b95d8350.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06ea99448f.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/061b229573.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06a498a71e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0645a2dd9d.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113813.html",
+        "title": "第三十二话：交战",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06ace838a2.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06f923046f.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06c4bfec24.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0652732d8b.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0637680725.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/060c640c40.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06cb766bc7.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/062dbf2136.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0689202609.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113814.html",
+        "title": "第三十三话：牺牲",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/068e44910a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/060e8ddca5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06ac2a1c5e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/060de5bbc8.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06429a64e7.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/063d33f8f6.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/068d8fb39a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/069b9f653c.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113815.html",
+        "title": "第三十四话：回收",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06b5b65c02.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06b5486268.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/060c402ec5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06c5a85cb5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06df9f5911.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06f28d9027.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06c55cab01.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/060aeb8bb1.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113816.html",
+        "title": "第三十五话：霸主的证明",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06278c7292.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/062e858b9d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06843ff592.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0673637b84.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/065cbd2fb3.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06b22b40f8.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0669be7422.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06914e53e3.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06ab8d8a8b.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/068da48748.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113817.html",
+        "title": "第三十六话：踩点",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0618165350.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06e98b1dd5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06c862d834.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06ccf7f85a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/067e8452c3.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06962eaeba.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06ee2c5746.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0605ede817.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0646e53d3c.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/064d09b385.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06d7d2ba93.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/068ae1b946.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06c175dd79.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113818.html",
+        "title": "第三十七话：遭遇",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06d98a5cb5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/066c6a7ada.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06a2a78e23.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06588ce775.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06609992dd.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0682d60db2.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0609cd9b94.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06d8311849.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0606bf51bd.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06895f10ca.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/068ae423ab.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113819.html",
+        "title": "第三十八话：游鱼",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06fbfdf452.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06f146419c.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/069b929c2c.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/060fe16290.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/064325a758.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06c427f72f.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0600a79a3e.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/068a5af365.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06e0c98e9d.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/068d60daeb.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/060c5d005b.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113820.html",
+        "title": "第三十九话：公园",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0667ec0a66.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0665c19e15.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06b89ad694.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/063db13e11.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/062a174daa.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0669026d71.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06e8601aa9.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06538ebc11.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/069442c887.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0611bd3d0f.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06b5b429ff.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113821.html",
+        "title": "第四十话：休整",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0640da4dfe.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0627faff16.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06292d7d49.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0685fa27ea.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06d0bf35d8.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/068abab124.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06bdf68db6.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/067f31e269.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/067eb16afa.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113822.html",
+        "title": "第四十一话：任务",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06b905dc2f.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06a3633752.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0650f51734.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0604887f3b.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/069e6eded0.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/061d1ffbb8.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06917d2ecb.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06e720b376.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/067ba253c6.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/113823.html",
+        "title": "第四十二话：位置",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06850646ed.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/066d0aa7d0.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06ca62dac8.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06246a5682.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0658d32833.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/0658b8110a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/067100eac5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/066a5929b4.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/06e1ddaf79.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/02/10/060dab41b3.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/116335.html",
+        "title": "第四十三话：螳螂捕蝉",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/13/10/51bf8581fb.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/13/10/51c7baefcf.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/13/10/51774bbb4b.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/13/10/51a877a4c8.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/13/10/5145014423.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/13/10/51b3a93821.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/13/10/51766b26be.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/13/10/51fd7c8e5a.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/13/10/516ea31d74.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/119320.html",
+        "title": "第四十四话：对话",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/02/27/16/317691756f.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/27/16/31458a86eb.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/27/16/31a8011167.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/27/16/3195146b21.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/27/16/310a003ec5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/27/16/31fc35e72f.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/27/16/31b0e8aae5.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/27/16/31aa0d2eef.jpg",
+            "http://res.img.96youhuiquan.com/2018/02/27/16/31b112ddbc.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/121034.html",
+        "title": "第四十五话：反转",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/03/06/10/5618e9e210.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/06/10/5613ade6c9.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/06/10/5628e19e0c.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/06/10/56a90efb19.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/06/10/56815d1f46.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/06/10/561639d406.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/06/10/568147e127.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/06/10/56781315d7.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/06/10/5648ba10b7.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/122482.html",
+        "title": "第四十六话：特别",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/03/16/11/4839341149.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/16/11/485714db1b.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/16/11/48c55d55cb.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/16/11/48ba6bf601.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/16/11/4801112445.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/16/11/480f9f53d8.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/16/11/487a4e9b55.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/16/11/48f04e42bb.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/16/11/48a5d11b28.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/16/11/4869de0e00.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/16/11/4815ab2da9.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/16/11/481a4a9b0a.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/16/11/482aed77fa.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/16/11/485a1e6e64.jpg",
+            "http://res.img.96youhuiquan.com/2018/03/16/11/4825633ea9.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/126248.html",
+        "title": "第四十七话：影子",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/04/06/08/2515ba06d8.jpg",
+            "http://res.img.96youhuiquan.com/2018/04/06/08/25d6f38223.jpg",
+            "http://res.img.96youhuiquan.com/2018/04/06/08/2552510317.jpg",
+            "http://res.img.96youhuiquan.com/2018/04/06/08/25385d5e2e.jpg",
+            "http://res.img.96youhuiquan.com/2018/04/06/08/25460c3793.jpg",
+            "http://res.img.96youhuiquan.com/2018/04/06/08/257971bccf.jpg",
+            "http://res.img.96youhuiquan.com/2018/04/06/08/252fcfbb84.jpg",
+            "http://res.img.96youhuiquan.com/2018/04/06/08/252f8f56c5.jpg",
+            "http://res.img.96youhuiquan.com/2018/04/06/08/2544674fb4.jpg",
+            "http://res.img.96youhuiquan.com/2018/04/06/08/25ced22004.jpg",
+            "http://res.img.96youhuiquan.com/2018/04/06/08/25f9eda896.jpg",
+            "http://res.img.96youhuiquan.com/2018/04/06/08/25e727fc55.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/134107.html",
+        "title": "通知",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/05/22/09/37457209ed.jpg"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/164518.html",
+        "title": "咳咳",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/09/11/09/3524fa477a.png/0"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/166729.html",
+        "title": "第四十八话：契约",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/09/19/09/377297de90.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/19/09/370f7d7384.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/19/09/375ceb7d3a.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/19/09/372b29b7a5.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/19/09/3789a1c6fd.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/19/09/374f135627.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/19/09/3772659956.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/19/09/372eb9f6db.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/19/09/377297fbcd.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/19/09/37c335c94c.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/19/09/372ef7b51e.jpg/0"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/168335.html",
+        "title": "第四十九话：同盟图章",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/09/25/16/07066d382f.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/25/16/07757d4af7.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/25/16/07b09a562a.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/25/16/07b34c2ecf.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/25/16/07d4054172.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/25/16/07a311de0a.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/25/16/07d64ec0b5.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/25/16/07df19d935.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/25/16/076d98cb9e.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/25/16/0741a55124.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/25/16/07738d08b1.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/09/25/16/07489a23a6.jpg/0"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/170139.html",
+        "title": "第五十话：倒计时·五",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/10/05/20/3765ee1da0.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/05/20/37b2718e01.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/05/20/37a8d0de4a.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/05/20/376da3ebe4.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/05/20/372ef17935.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/05/20/377a3cafcb.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/05/20/370ac21dea.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/05/20/37ad8c7557.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/05/20/37d50d71a5.jpg/0"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/170926.html",
+        "title": "第五十一话：倒计时·四",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/10/09/16/345fd3c303.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/09/16/343defe159.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/09/16/34e02a584e.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/09/16/34e8c84981.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/09/16/34ad72a879.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/09/16/34a02abe78.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/09/16/341b9af12a.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/09/16/3469a79ce6.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/09/16/347d57edea.jpg/0"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/172546.html",
+        "title": "第五十二话：倒计时·三",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/10/16/10/293b9af989.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/16/10/29eb30705f.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/16/10/2942d98683.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/16/10/29dbbe3538.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/16/10/2990b655eb.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/16/10/29425cd414.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/16/10/29092e6b55.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/16/10/29ae507448.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/16/10/298e32b43c.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/16/10/297442bdd9.jpg/0"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/174163.html",
+        "title": "第五十三话：倒计时·二",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/10/23/11/0530bf7b5b.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/23/11/05aea9cd4b.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/23/11/05824ef4b6.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/23/11/05fc6728a2.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/23/11/05bf986ac9.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/23/11/053918761d.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/23/11/0581a7f569.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/23/11/0585b3216f.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/23/11/05d9696493.jpg/0"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/175800.html",
+        "title": "第五十四话：倒计时·一",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/10/30/10/18465aecff.png/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/18f076cf13.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/18f052cb43.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/186fbe7067.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/180b52b8fe.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/1868ad0298.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/18e010378d.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/181b9a8935.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/185b941b07.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/187c00f3e6.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/183ee43056.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/18ad7929c3.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/18a96ab585.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/18fc426880.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/183aeea52b.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/187e0bada1.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/10/30/10/1848561079.jpg/0"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/182280.html",
+        "title": "悲报",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/12/05/23/53a5a0ccbf.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/12/05/23/532601b14e.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/12/05/23/5413f7c30d.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/12/05/23/548b598143.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/12/05/23/5433be3933.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/12/05/23/54a88b824e.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/12/05/23/54a22fb09b.jpg/0",
+            "http://res.img.96youhuiquan.com/2018/12/05/23/5485b086aa.jpg/0"
+        ]
+    },
+    {
+        "href": "http://www.alimanhua.com/manhua/1563/182281.html",
+        "title": "悲报",
+        "imgs": [
+            "http://res.img.96youhuiquan.com/2018/12/05/23/54a3c3f8a1.jpg/0"
+        ]
+    }
+];
+                var n=-1;
+                function imgerrorfun(){
+                    var img=event.srcElement;
+                    img.src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAACABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD4Fb9q/wCN3P8AxePx/wD+FRff/HafD+1d8bSHz8YvH54H/Mz33/x2iigBG/au+N3H/F4/H/T/AKGi+/8AjtFFFAH/2Q==";
+                    img.onerror=null;
+                }
+                function load_img(next){
+                    if(next){
+                        if(n<data.length)n++;
+                        if(n==data.length)n=0;
+                    }
+                    else{
+                        if(n>=0)n--;
+                        if(n<0)n=data.length-1;
+                    }
+                    if(document.getElementsByClassName("mlml").length==0){
+                        document.body.innerHTML+='<div id="main" style="height: 110vh;"></div>';
+                        var ml='<div class="mlml">';
+                        for(i=0;i<data.length;i++){
+                            if(i==n)ml+="<div class='cpt actived' id='_"+i+"' onclick='n="+(i-1)+";load_img(1);'>"+data[i]["title"]+"</div>";
+                            else ml+="<div class='cpt' id='_"+i+"' onclick='n="+(i-1)+";load_img(1);'>"+data[i]["title"]+"</div>";
+                        }
+                        ml+="</div>";
+                        document.body.innerHTML+=ml;
+                        document.body.innerHTML+='<button class="prev" onclick="load_img(0);">prev</button>';
+                        document.body.innerHTML+='<button class="next" onclick="load_img(1);">next</button>';
+                    }
+                    else{
+                        document.querySelectorAll(".cpt").forEach(function(elem){
+                            if(elem.classList.contains("actived")){
+                                elem.classList.remove("actived");
+                            }
+                            if(elem.id=="_"+n){
+                                elem.classList.add("actived");
+                            }
+                        })
+                    }
+                    document.getElementById("main").innerHTML='';
+                    document.title=data[n]["title"];
+                    for(i=0;i<data[n]["imgs"].length;i++){
+                        document.getElementById("main").innerHTML+="<center><img src='"+data[n]["imgs"][i]+"' onerror='imgerrorfun()'></center>";
+                    }
+                    // location.hash="#_"+n;
+                    document.body.scrollIntoView();
+                    document.getElementsByClassName("mlml")[0].scrollTop=document.getElementById("_"+n).offsetTop;
+                }
+            </script>
+        </head>
+        <body style="background-color: black;">
+            <script>load_img(1)</script>
+        </body>
+    </html>
