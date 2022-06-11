@@ -1,0 +1,31 @@
+
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Directory listing for /</title>
+    </head>
+    <body>
+    <h1>Directory listing for /Solutions_for_Algorithms</h1>
+    <hr>
+    <ul id="the_id">
+        
+    </ul>
+    <hr>
+    <script>
+        var ul=document.getElementById("the_id");
+        var contents=[
+            "Solutions_for_Algorithms_HW1.html",
+            "Solutions_for_Algorithms_HW2_v3.html",
+            "Solutions_for_Algorithms_HW3_v3.html",
+            "Solutions_for_Algorithms_HW4.html",
+            "Solutions_for_Algorithms_HW5.html"
+        ];
+        contents.forEach(
+            function(elem){
+                ul.innerHTML+="<li><a href='"+elem+"'>"+elem+"</a></li>";
+            }
+        )
+    </script>
+    </body>
+    </html>
+    
