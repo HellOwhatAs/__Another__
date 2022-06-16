@@ -1,0 +1,2 @@
+Max=(lambda i:(m1 if (m1:=Max(i[:l//2]))>(m2:=Max(i[l//2:])) else m2) if (l:=len(i))>2 else (i[0] if l==1 else (i[0] if i[0]>i[1] else i[1])))
+intsum=(lambda a,b:None if (a:=a[::-1],b:=b[::-1],func:=lambda i:func(i[:-1]) if i and i[-1]==0 else i,func2:=lambda c:c if max(c)<10 else func2(func([i+j for i,j in zip([c[i]%10 for i in range(len(c))]+[0],[0]+[c[i]//10 for i in range(len(c))])]))) and False else func(((c:=[i+j for i,j in zip(a+[0]*(0 if len(a)>len(b) else len(b)-len(a)),b+[0]*(0 if len(b)>len(a) else len(a)-len(b)))]),func2(c))[-1])[::-1])
