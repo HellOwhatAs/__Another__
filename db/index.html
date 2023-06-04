@@ -574,7 +574,7 @@ Sage<span class="token punctuation">,</span> Sdept<span class="token punctuation
 <span class="token punctuation">[</span><span class="token keyword keyword-ON">ON</span> <span class="token operator">&lt;</span>&#x5BF9;&#x8C61;&#x7C7B;&#x578B;<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>&#x5BF9;&#x8C61;&#x540D;<span class="token operator">&gt;</span><span class="token punctuation">]</span>
 <span class="token keyword keyword-TO">TO</span> <span class="token operator">&lt;</span>&#x7528;&#x6237;<span class="token operator">&gt;</span><span class="token punctuation">[</span><span class="token punctuation">,</span><span class="token operator">&lt;</span>&#x7528;&#x6237;<span class="token operator">&gt;</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 <span class="token punctuation">[</span><span class="token keyword keyword-WITH">WITH</span> <span class="token keyword keyword-GRANT">GRANT</span> <span class="token keyword keyword-OPTION">OPTION</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-</pre><pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-GRANT">GRANT</span> <span class="token keyword keyword-ALL">ALL</span> PRIVILIGES <span class="token comment">/*&#x6240;&#x6709;&#x6743;&#x9650;*/</span>
+</pre><pre data-role="codeBlock" data-info="sql" class="language-sql"><span class="token keyword keyword-GRANT">GRANT</span> <span class="token keyword keyword-ALL">ALL</span> <span class="token keyword keyword-PRIVILEGES">PRIVILEGES</span> <span class="token comment">/*&#x6240;&#x6709;&#x6743;&#x9650;*/</span>
 <span class="token keyword keyword-ON">ON</span> <span class="token keyword keyword-TABLE">TABLE</span> Student<span class="token punctuation">,</span> Course
 <span class="token keyword keyword-TO">TO</span> <span class="token keyword keyword-PUBLIC">PUBLIC</span> <span class="token comment">/*&#x5168;&#x4F53;&#x7528;&#x6237;*/</span>
 <span class="token keyword keyword-WITH">WITH</span> <span class="token keyword keyword-GRANT">GRANT</span> <span class="token keyword keyword-OPTION">OPTION</span><span class="token punctuation">;</span> <span class="token comment">/*&#x5C06;&#x5BF9;&#x6307;&#x5B9A;&#x64CD;&#x4F5C;&#x5BF9;&#x8C61;&#x7684;&#x6307;&#x5B9A;&#x64CD;&#x4F5C;&#x6743;&#x9650;&#x6388;&#x4E88;&#x6307;&#x5B9A;&#x7684;&#x7528;&#x6237;*/</span>
@@ -775,6 +775,54 @@ SQL2                <span class="token operator">|</span>  SQL2
 <li>&#x5171;&#x4EAB;&#x610F;&#x5411;&#x6392;&#x5B83;&#x9501;(Share Intent Exclusive Lock&#xFF0C;&#x7B80;&#x79F0;<strong>SIX&#x9501;</strong>) &#x8868;&#x793A;&#x5BF9;&#x5B83;&#x52A0;S&#x9501;&#xFF0C;&#x518D;&#x52A0;IX&#x9501;</li>
 </ul>
 <p><img src="assets/%E6%84%8F%E5%90%91%E9%94%81%E7%9B%B8%E5%AE%B9%E7%9F%A9%E9%98%B5.png" alt></p>
+<hr>
+<details>
+<summary> <b>&#x5C06;&#x6CA1;&#x6709;&#x9009;&#x8BFE;&#x7684;&#x5B66;&#x751F;&#x4ECE;&#x5B66;&#x751F;&#x8868;&#x4E2D;&#x5220;&#x9664;&#xFF1B;</b></summary>
+<pre class="language-text">DELETE FROM Student WHERE Sno NOT IN (SELECT DISTINCT Sno FROM SC);
+</pre>
+</details>
+<details>
+<summary> <b>&#x67E5;&#x8BE2;&#x9009;&#x62E9;&#x4E86;&#x5218;&#x8001;&#x5E08;&#x6240;&#x6709;&#x8BFE;&#x7A0B;&#x7684;&#x5B66;&#x751F;&#x5B66;&#x53F7;&#xFF1B;</b></summary>
+<pre class="language-text">SELECT Sno FROM Student WHERE NOT EXISTS (
+    SELECT Cno FROM Course WHERE Course.Teacher = &apos;&#x5218;&#x8001;&#x5E08;&apos; AND NOT EXISTS (
+        SELECT * FROM SC WHERE SC.Sno = Student.Sno AND SC.Cno = Course.Cno
+    ) 
+);
+</pre>
+</details>
+<details>
+<summary> <b>&#x6309;&#x5E73;&#x5747;&#x6210;&#x7EE9;&#x7684;&#x964D;&#x5E8F;&#x7ED9;&#x51FA;&#x6240;&#x6709;&#x8BFE;&#x7A0B;&#x90FD;&#x53CA;&#x683C;&#x7684;&#x5B66;&#x751F;&#x53CA;&#x5176;&#x5E73;&#x5747;&#x6210;&#x7EE9;</b></summary>
+<pre class="language-text">SELECT Student.Sno, Sname, AVG(Grade) AS avg_score
+FROM Student.SC
+WHERE Student.Sno = SC.Sno
+GROUP BY Sno
+HAVING MIN(Grade) &gt;= 60
+ORDER BY avg_score DESC;
+</pre>
+</details>
+<details>
+<summary> <b>&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x5E73;&#x5747;&#x6210;&#x7EE9;&#x5927;&#x4E8E;85&#x5206;&#x7684;&#x5B66;&#x751F;&#x6210;&#x7EE9;&#x89C6;&#x56FE;&#xFF1B;&#xFF08;&#x5B66;&#x53F7;&#x548C;&#x5E73;&#x5747;&#x6210;&#x7EE9;&#xFF09;</b></summary>
+<pre class="language-text">CREATE VIEW AVGGRADE(Sno, AVG_GRADE) AS (
+    SELECT Sno, AVG(Grade)
+    FROM SC
+    GROUP BY Sno
+    HAVING AVG(Grade) &gt; 85;
+)
+</pre>
+</details>
+<details>
+<summary> <b>&#x8868;S&#x4E2D;&#x7537;&#x540C;&#x5B66;&#x7684;&#x6BCF;&#x4E00;&#x5E74;&#x9F84;&#x7EC4;&#xFF08;&#x8D85;&#x8FC7;50&#x4EBA;&#xFF09;&#x6709;&#x591A;&#x5C11;&#x4EBA;&#xFF1F;&#x8981;&#x6C42;&#x67E5;&#x8BE2;&#x7ED3;&#x679C;&#x6309;&#x4EBA;&#x6570;&#x5347;&#x5E8F;&#x6392;&#x5217;&#xFF0C;&#x4EBA;&#x6570;&#x76F8;&#x540C;&#x6309;&#x5E74;&#x9F84;&#x964D;&#x5E8F;&#x6392;&#x5217;&#x3002;</b></summary>
+<pre class="language-text">SELECT Sage, COUNT(Sno) AS Num FROM Student WHERE Ssex = &apos;&#x7537;&apos; GROUP BY Sage
+HAVING COUNT(Sno) &gt; 50 ORDER BY Num ASC, Sage DESC;
+</pre>
+</details>
+<details>
+<summary> <b>&#x6388;&#x6743;&#x7528;&#x6237;U2&#x5BF9;&#x5B66;&#x751F;&#x8868;&#x7684;&#x5BB6;&#x5EAD;&#x4F4F;&#x5740;&#x5177;&#x6709;&#x66F4;&#x65B0;&#x6743;&#x9650;&#xFF0C;&#x5E76;&#x53EF;&#x7ED9;&#x5176;&#x4ED6;&#x7528;&#x6237;&#x6388;&#x6743;</b></summary>
+<pre class="language-text">GRANT UPDATE(&#x5BB6;&#x5EAD;&#x4F4F;&#x5740;) ON &#x5B66;&#x751F; TO U2 WITH GRANT OPTION;
+</pre>
+</details>
+<p>&#x8FD8;&#x6CA1;&#x5F00;&#x59CB;&#x7684;&#x4E8B;&#x52A1;&#x65E2;&#x4E0D;&#x7528;&#x91CD;&#x505A;&#x4E5F;&#x4E0D;&#x7528;&#x56DE;&#x6EDA;</p>
+<p>&#x81EA;&#x5DF1;&#x52A0;&#x4E86;S&#x9501;&#x4E4B;&#x540E;&#x53EF;&#x4EE5;&#x518D;&#x52A0;X&#x9501;</p>
 
       </div>
       <div class="md-sidebar-toc">
