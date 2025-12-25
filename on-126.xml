@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<XmlCompilation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Id>eb298ec1-034e-4857-95f4-4178b5d70c72</Id>
+  <MediaPath/>
+  <Title/>
+  <Artist/>
+  <Album/>
+  <Tracks>
+    <Track>
+      <Id>99b8aacf-5eb4-4c12-ad18-61f111090fe1</Id>
+      <Artist/>
+      <PreRoll/>
+      <PlayheadPosition>0</PlayheadPosition>
+      <PlaybackRate>1</PlaybackRate>
+      <PitchShift>0</PitchShift>
+      <Name>熄灭</Name>
+      <Album>126</Album>
+      <Url>https://m704.music.126.net/20251226010344/3c34d7ece8de95a2b4342290133e1a05/jdyyaac/obj/w5rDlsOJwrLDjj7CmsOj/26877149709/6c1d/e145/26e9/b3e94df6e20e9a61a0f525c4a327a2bb.m4a?vuutv=+TM1JKvYxX7eMzJTRFXaMFYMSCF9AmH8zgPy8u543VxNnJenlp2ng8BgHWkjOf6MdBIGqNKjcFKkF37H9qqg9Gka00oTXU0BRXS/ibN2GSE=&amp;authSecret=0000019b566083e501b80a64fe660006&amp;cdntag=bWFyaz1vc193ZWIscXVhbGl0eV9leGhpZ2g</Url>
+      <Meter/>
+      <UseMeasureNumbers/>
+      <Volume>0.5</Volume>
+      <Cues/>
+    </Track>
+    <Track>
+      <Id>27d5d5cc-1945-4fa4-8908-9fbffba02d4b</Id>
+      <Artist/>
+      <PreRoll/>
+      <PlayheadPosition/>
+      <PlaybackRate>1</PlaybackRate>
+      <PitchShift>0</PitchShift>
+      <Name>月落的声音 一颗狼星</Name>
+      <Album>github</Album>
+      <Url>https://hellowhatas.github.io/useless/ms/%E6%9C%88%E8%90%BD%E7%9A%84%E5%A3%B0%E9%9F%B3%20-%20%E4%B8%80%E9%A2%97%E7%8B%BC%E6%98%9F.m4a</Url>
+      <Meter/>
+      <UseMeasureNumbers/>
+      <Volume>0.5</Volume>
+      <Cues/>
+    </Track>
+  </Tracks>
+  <PlaybackMode>PlayTrack</PlaybackMode>
+</XmlCompilation>
